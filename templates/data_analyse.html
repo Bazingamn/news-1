@@ -1,9 +1,22 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title></title>
+    <title></title>
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}" media="all">
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}">
+    <script src="{% static 'layui/layui.js' %}" charset="utf-8"></script>
 </head>
+
 <body>
-数据分析
+    <div class="layui-form-item" style="margin-top: 80px;display: flex;flex-direction: row;">
+        <div class="layui-input-block" style="margin-left: 100px;width:500px;">
+            <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入新闻关键字或ID" class="layui-input">
+        </div>
+        <input type="button" class="submit-btn" value="查询" style="margin-left: 20px;" onclick="checkPasswd()"></input>
+    </div>
 </body>
+
 </html>

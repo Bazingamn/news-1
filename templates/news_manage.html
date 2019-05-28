@@ -1,9 +1,26 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title></title>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}" media="all">
+    <script src="{% static 'layui/layui.js' %}" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}">
 </head>
+
 <body>
-新闻管理
+    <div class="layui-form-item" style="margin-top: 80px;display: flex;flex-direction: row;">
+        <div class="layui-input-block" style="margin-left: 100px;width:500px;">
+            <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入新闻关键字或ID" class="layui-input">
+        </div>
+        <input type="button" class="submit-btn" value="查询" style="margin-left: 20px;" onclick="checkPasswd()"></input>
+    </div>
 </body>
+
 </html>
