@@ -1,0 +1,19 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	    <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/vector.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}" media="all">
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
+    <script src="{% static 'layui/layui.js' %}" charset="utf-8"></script>
+    <script src="{% static 'js/menu.js' %}" charset="utf-8"></script>
+</head>
+<body>
+	{{user_manage}}
+
+</body>
+</html>

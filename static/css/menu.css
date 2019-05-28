@@ -1,0 +1,13 @@
+
+.head{
+	text-align: center;
+	height: 10vh;
+	background-color: #393D49;
+	border-bottom: 0.2vh solid rgba(255,255,255,.7);
+	    color: rgba(255,255,255);
+}
+.right{
+	float: right;
+	width: 100%;
+	height: 82vh;
+}

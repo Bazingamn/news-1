@@ -1,0 +1,45 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>中央控制台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/vector.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}" media="all">
+    <script src="{% static 'layui/layui.js' %}" charset="utf-8"></script>
+    <script src="{% static 'js/menu.js' %}" charset="utf-8"></script>
+</head>
+<body style="display: flex;flex-direction: column;">
+    <div class="head">
+        <span style="line-height: 10vh;font-size: 1.2em;">中央控制台</span>
+    </div>
+    <div style="display: flex;flex-direction: row;">
+        <ul class="layui-nav layui-nav-tree layui-inline" style="height: 89.8vh;" lay-filter="nav" style="margin-right: 10px;">
+            <li class="layui-nav-item">
+                <a href="javascript:;" data-page="news_manage.html">新闻管理</a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;" data-page="video_manage.html">视频管理</a>
+            </li>
+            <li class="layui-nav-item"><a href="javascript:;" data-page="user_manage.html">用户管理</a></li>
+            <li class="layui-nav-item" >
+                <a href="javascript:;"  data-page="data_analyse.html">数据分析</a>
+            </li>
+            <li class="layui-nav-item"><a href="javascript:;" data-page="modify_passwd.html">修改登录密码</a></li>
+            <li class="layui-nav-item"><a data-page="logout" href="javascript:;">退出</a></li>
+        </ul>
+        <!-- <iframe class="right" src=""></iframe>  -->
+        <div class="layui-tab layui-tab-card" lay-filter="tabList" lay-allowclose="true"  style="width: 100%;height:88vh;margin-top: 0;">
+            <ul class="layui-tab-title">
+            </ul>
+            <div class="layui-tab-content">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

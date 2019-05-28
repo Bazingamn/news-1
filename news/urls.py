@@ -16,7 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from news_manage import views as news_manage
+from admin_status import views as admin_status
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', admin_status.index),
+    path('login/', admin_status.login),
+    path(r'menu/<file_name>.html', admin_status.to_url),
+    path(r'menu/', admin_status.menu),
+    path(r'menu/modifyPasswd/', admin_status.modify_passwd),
+    path(r'menu/logout/', admin_status.logout),
     path('getNewsList/', news_manage.get_news_list),
+    path('getVideoList/', news_manage.get_video_list),
 ]

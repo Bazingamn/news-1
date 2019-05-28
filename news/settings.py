@@ -18,19 +18,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # MONGODB配置
 CLIENT = pymongo.MongoClient("mongodb://120.77.144.237:27017")
 DB_CON = CLIENT['news']
-MYCOL = DB_CON['news']
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'i^(ur6dmfe2m!jfmmbi79um5p7=h$(#q9uq18_&+z31g3t+-05'
-
+USERNAME = 'admin'
 # SECURITY WARNING: don't run with debug turned on in production!
+PASSWD = 'c25c7c22b8ea2b19752085101017e332'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+X_FRAME_OPTIONS = 'ALLOWALL'
 
 # Application definition
 
@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'admin_status.middleware.LoginMiddleware'
 ]
 
 ROOT_URLCONF = 'news.urls'
@@ -60,7 +61,7 @@ ROOT_URLCONF = 'news.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'news',
         'USER': 'news',
-        'PASSWORD': 'hhy19980615',
+        'PASSWORD': '1107786871',
         'HOST': '120.77.144.237',
         'PORT': '3306',
     }
@@ -132,3 +133,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/'),
 ]
+
+SESSION_COOKIE_AGE = 60 * 30
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False

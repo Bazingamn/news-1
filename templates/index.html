@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+    <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/js/vector.js"></script>
+    <link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
+    <script src="../static/layui/layui.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="container">
+        <div id="output">
+            <div class="containerT">
+                <h1 style="color: #fff;font-weight: bold; font-size: 2em;">中央控制台登录</h1>
+                <input class="input" type="text" placeholder="用户名/邮箱" name="username" id="entry_name" value="">
+                <input class="input" type="password" placeholder="密码" name="password" id="entry_password">
+                <input type="button" class="submitBtn" id="entry_btn" onclick="login()" value="登录"> </input>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        layui.use("layer", function() {
+            $(function() {
+                Victor("container", "output"); //登陆背景函数
+                $("#entry_name").focus();
+                $(document).keydown(function(event) {
+                    if (event.keyCode == 13) {
+                        $("#entry_btn").click();
+                    }
+                });
+            });
+            login = function() {
+                username = $("#entry_name").val()
+                password = $("#entry_password").val()
+                if (username == "" || password == "") {
+                    layer.msg("请输入用户名或密码", { icon: 2, time: 500 });
+                } else {
+                    var loading = layer.load(0, {
+                        shade: false,
+                    });
+                    $.ajax({
+                        url: 'login/',
+                        method: 'POST',
+                        data: {
+                            username: username,
+                            password: password
+                        },
+                        success: function(res) {
+                            layer.close(loading);
+                            if (res.code == 0) {
+                                window.location.href = "/menu/"
+                            } else {
+                                layer.msg(res.data, { time: 500 });
+                            }
+                        },
+                        fail: function(res) {
+                            layer.msg(res, { time: 500 });
+                        }
+                    })
+                }
+            }
+        })
+    })
+    </script>
+</body>
+
+</html>

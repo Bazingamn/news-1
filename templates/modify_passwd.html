@@ -1,0 +1,117 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}" media="all">
+    <script src="{% static 'layui/layui.js' %}" charset="utf-8"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+</head>
+
+<body>
+    <blockquote class="layui-elem-quote" style="margin-top: 3vh;">修改后台登录密码，如忘记原密码，请修改settings.py文件内的PASSWD的值为新密码经MD5加密后的字符串，MD5盐值为SECRET_KEY的值</blockquote>
+    <div style="margin-left: 10%;">
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 100px;">原密码</label>
+            <div class="layui-input-inline" style="width: 200px;">
+                <input type="password" id="oldPassword" lay-verify="pass" placeholder="请输入原密码" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label" id="oldPasswordTips" style="width: 100px;color:red;display: none;">请输入原密码</label>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 100px;">新密码</label>
+            <div class="layui-input-inline" style="width: 200px;">
+                <input type="password" id="newPassword" lay-verify="pass" placeholder="请输入新密码" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label" id="newPasswordTips" style="width: 100px;color:red;display: none;">请输入新密码</label>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 100px;">确认新密码密码</label>
+            <div class="layui-input-inline" style="width: 200px;">
+                <input type="password" id="newPasswordAgain" lay-verify="pass" placeholder="再次输入新密码" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label" id="newPasswordAgainTips" style="width: 100px;color:red;display: none;">请确认新密码</label>
+        </div>
+        <input type="button" class="submit-btn" value="修改" onclick="checkPasswd()"></input>
+    </div>
+</body>
+<style type="text/css">
+.submit-btn {
+    width: 100px;
+    display: inline-block;
+    height: 38px;
+    line-height: 38px;
+    padding: 0 18px;
+    background-color: #009688;
+    color: #fff;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 14px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-left: 12.5%;
+}
+
+.layui-input:focus {
+    outline: 1px solid #009688;
+}
+</style>
+<script type="text/javascript">
+layui.use(['layer'], function() {
+    var $ = layui.jquery
+    checkPasswd = function() {
+        var oldPassword = $("#oldPassword")
+        var newPassword = $("#newPassword")
+        var newPasswordAgain = $("#newPasswordAgain")
+        if (oldPassword.val() == '') {
+            oldPassword.focus()
+            $('#oldPasswordTips').show()
+            $('#newPasswordTips').hide()
+            $('#newPasswordAgainTips').hide()
+        } else if (newPassword.val() == '') {
+            newPassword.focus()
+            $('#oldPasswordTips').hide()
+            $('#newPasswordTips').show()
+            $('#newPasswordAgainTips').hide()
+        } else if (newPasswordAgain.val() == '') {
+            newPasswordAgain.focus()
+            $('#oldPasswordTips').hide()
+            $('#newPasswordTips').hide()
+            $('#newPasswordAgainTips').show()
+        } else {
+            var loading = parent.layer.load(0, {
+                shade: false,
+            });
+            $.ajax({
+                url: 'modifyPasswd/',
+                method: 'POST',
+                data: {
+                    old_passwd: oldPassword.val(),
+                    news_passwd: newPassword.val(),
+                    new_passwd_again: newPasswordAgain.val()
+                },
+                success: function(res) {
+                    console.log(res)
+                    parent.layer.close(loading);
+                    if (res.code == 0) {
+                        oldPassword.val('')
+                        newPassword.val('')
+                        newPasswordAgain.val('')
+                    }
+                    parent.layer.msg(res.data, { time: 500 })
+                },
+                fail: function(res) {
+                    console.log(res)
+                },
+                complete: function() {
+                    parent.layer.close(loading);
+                }
+            })
+        }
+    }
+})
+</script>
+
+</html>
