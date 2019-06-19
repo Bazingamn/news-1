@@ -17,7 +17,7 @@ import smtplib
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # MONGODB配置
-CLIENT = pymongo.MongoClient("mongodb://120.77.144.237:27017")
+CLIENT = pymongo.MongoClient("****")
 DB_CON = CLIENT['news']
 
 # Quick-start development settings - unsuitable for production
@@ -84,10 +84,10 @@ WSGI_APPLICATION = 'news.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'news',
-        'USER': 'news',
-        'PASSWORD': '1107786871',
-        'HOST': '120.77.144.237',
+        'NAME': '****',
+        'USER': '****',
+        'PASSWORD': '*****',
+        'HOST': '*****',
         'PORT': '3306',
     }
 }
@@ -138,30 +138,28 @@ STATICFILES_DIRS = [
 SESSION_COOKIE_AGE = 60 * 15
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
-DETAULT_AVATAR = 'https://uuclock-1254170634.cos.ap-chengdu.myqcloud.com/JSG/user/logo/logo.png'
-LOCATION_API = 'http://ipquery.market.alicloudapi.com/query?ip='
-LOCATION_APPCODE = '7384a503b81d41a49d331cacec906337'
+DETAULT_AVATAR = '***'
+LOCATION_API = '***'
+LOCATION_APPCODE = '***'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.mxhichina.com'
+EMAIL_HOST = '****'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'ricky@herpstech.com'
-EMAIL_HOST_PASSWORD = 'hhy19980615,'
+EMAIL_HOST_USER = '****'
+EMAIL_HOST_PASSWORD = '****,'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 MAIL_USE_SSL = True
 
-MAP_API = 'http://api.map.baidu.com/geocoder/v2/?output=json&ak=92N7LQj92kc06OBq2Pj0HBXxtY9bKKGe&callback=showLocation&address='
+MAP_API = '*****'
 
 '''
 function: 腾讯云对象存储模块
-parameters@secret_id: secret_id@secret_key: secret_key@region: 存储桶名称@token: token默认为空@scheme：请求方式
-date: 2018 / 09 / 06
 '''
-SECRETID = 'AKIDmOltnSABQVQ6Yx7ByXqulOmumOjpEqoX'  # secretId
-SECRETKEY = 'cz83j9MK3WieKjrjKfjZAWcU8XhbFcja'  # secretKey
-REGION = 'ap-chengdu'  # Region
+SECRETID = '***'  # secretId
+SECRETKEY = '****'  # secretKey
+REGION = '***'  # Region
 TOKEN = None  # Token，默认为空
 SCHEMA = 'https'  # 使用 http/https 协议
