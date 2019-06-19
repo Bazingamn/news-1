@@ -67,7 +67,7 @@ layui.use(['layer'], function() {
                 shade: false,
             });
             $.ajax({
-                url: 'modifyPasswd/',
+                url: '/web/modifyPasswd/',
                 method: 'POST',
                 data: {
                     old_passwd: oldPassword.val(),

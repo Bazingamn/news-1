@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{news_info.title}}</title>
+</head>
+
+<body>
+    <div class="title">{{news_info.title}}</div>
+    <div style="display: flex;flex-direction: row;margin-top: 5em;">
+        <div class="tag">{{news_info.from}}</div>
+        <div class="tag">{{news_info.tag}}</div>
+        <div class="tag">{{news_info.timestamp}}</div>
+    </div>
+    <div class="content">
+    	{% for item in news_info.detail %}
+    		{% if item.type == 'text' %}
+    			<div style="margin-top: 2em;font-size: 1.5em;">{{item.data}}</div>
+    		{% else %}
+    			<img src="{{item.data}}" style="width: 90%;margin-left: 5%;margin-top: 2em;" />
+    		{% endif %}
+    	{% endfor %}
+    </div>
+</body>
+<style type="text/css">
+.title {
+	margin-top: 2em;
+    margin-left: 1em;
+    font-size: 3.5em;
+    margin-right: 1em;
+}
+
+.tag {
+    font-size: 2.5em;
+    margin-left: 1.5em;
+    color: rgb(130, 140, 155);
+}
+.content{
+	margin-top: 2em;
+	text-indent: 2em;
+	margin-left: 1.5em
+}
+</style>
+
+</html>

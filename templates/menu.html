@@ -15,26 +15,26 @@
     <script src="{% static 'js/menu.js' %}" charset="utf-8"></script>
 </head>
 <body style="display: flex;flex-direction: column;">
-    <div class="head">
+<!--     <div class="head">
         <span style="line-height: 10vh;font-size: 1.2em;">中央控制台</span>
-    </div>
+    </div> -->
     <div style="display: flex;flex-direction: row;">
-        <ul class="layui-nav layui-nav-tree layui-inline" style="height: 89.8vh;" lay-filter="nav" style="margin-right: 10px;">
+        <ul class="layui-nav layui-nav-tree layui-inline" style="height: 100vh;" lay-filter="nav" style="margin-right: 10px;">
             <li class="layui-nav-item">
-                <a href="javascript:;" data-page="news_manage.html">新闻管理</a>
+                <a href="javascript:;" data-page="/web/news_manage.html">新闻管理</a>
             </li>
             <li class="layui-nav-item">
-                <a href="javascript:;" data-page="video_manage.html">视频管理</a>
+                <a href="javascript:;" data-page="/web/video_manage.html">视频管理</a>
             </li>
-            <li class="layui-nav-item"><a href="javascript:;" data-page="user_manage.html">用户管理</a></li>
+            <li class="layui-nav-item"><a href="javascript:;" data-page="/web/user_manage.html">用户管理</a></li>
             <li class="layui-nav-item" >
-                <a href="javascript:;"  data-page="data_analyse.html">数据分析</a>
+                <a href="javascript:;"  data-page="/web/data_analyse.html">数据分析</a>
             </li>
-            <li class="layui-nav-item"><a href="javascript:;" data-page="modify_passwd.html">修改登录密码</a></li>
+            <li class="layui-nav-item"><a href="javascript:;" data-page="/web/modify_passwd.html">修改登录密码</a></li>
             <li class="layui-nav-item"><a data-page="logout" href="javascript:;">退出</a></li>
         </ul>
         <!-- <iframe class="right" src=""></iframe>  -->
-        <div class="layui-tab layui-tab-card" lay-filter="tabList" lay-allowclose="true"  style="width: 100%;height:88vh;margin-top: 0;">
+        <div class="layui-tab layui-tab-card" lay-filter="tabList" lay-allowclose="true"  style="width: 100%;height:98vh;margin-top: 0; ">
             <ul class="layui-tab-title">
             </ul>
             <div class="layui-tab-content">
@@ -42,4 +42,6 @@
         </div>
     </div>
 </body>
+<style type="text/css">
+</style>
 </html>

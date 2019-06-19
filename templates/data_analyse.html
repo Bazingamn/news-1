@@ -8,15 +8,191 @@
     <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}">
     <script src="{% static 'layui/layui.js' %}" charset="utf-8"></script>
+    <script src="{% static 'js/echarts.min.js' %}" charset="utf-8"></script>
+    <script src="{% static 'js/card1.js' %}" charset="utf-8"></script>
+    <script src="{% static 'js/card2.js' %}" charset="utf-8"></script>
+    <script src="{% static 'js/card3.js' %}" charset="utf-8"></script>
+    <script src="{% static 'js/card4.js' %}" charset="utf-8"></script>
+    <script src="{% static 'js/public.js' %}" charset="utf-8"></script>
+    <script src="{% static 'js/china.js' %}" charset="utf-8"></script>
 </head>
 
-<body>
-    <div class="layui-form-item" style="margin-top: 80px;display: flex;flex-direction: row;">
-        <div class="layui-input-block" style="margin-left: 100px;width:500px;">
-            <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入新闻关键字或ID" class="layui-input">
+<body style="display: flex;flex-direction: column;flex-wrap: wrap;">
+    <div style="display: flex;flex-direction: row;width: 100%:">
+        <div class="layui-col-md6" style="margin-top: 30px;width: 60%; margin-left: 10px; box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);">
+            <div class="layui-card">
+                <div class="layui-card-header" style="height: 50px;display: flex;flex-direction: row;">
+                    <div class="graph-title-item-selected" id="use_graph_title">
+                        用户流量趋势
+                    </div>
+                    <div class="graph-title-item" id="regist_graph_title">
+                        最近一周注册趋势
+                    </div>
+                </div>
+                <div class="layui-card-body" id="use_graph">
+                    <div class="layui-inline" style="display: flex;flex-direction: row;align-items: center;margin-top: 20px;margin-left: -30px;">
+                        <label class="layui-form-label">开始日期</label>
+                        <div class="layui-input-block" style="margin-left: 0;">
+                            <input type="text" name="date" id="date1" autocomplete="off" class="layui-input">
+                        </div>
+                        <label class="layui-form-label">结束日期</label>
+                        <div class="layui-input-block" style="margin-left: 0;">
+                            <input type="text" name="date" id="date2" autocomplete="off" class="layui-input">
+                        </div>
+                        <input type="button" class="layui-btn" value="查询" style="margin-left: 10px;" onclick="getCard1Data()"></input>
+                    </div>
+                    <div id="use" style="width: 700px;height:400px;margin-left: -30px;"></div>
+                </div>
+                <div class="layui-card-body" id="regist_graph" style="display: none;">
+                    <div id="regist" style="width: 700px;height:400px;margin-left: -30px;margin-top: 60px;"></div>
+                </div>
+            </div>
         </div>
-        <input type="button" class="submit-btn" value="查询" style="margin-left: 20px;" onclick="checkPasswd()"></input>
+        <div style="display: flex;flex-direction: column;width:35%;">
+            <div class="layui-col-md6" style="margin-top: 30px; width:100%;height: 280px; margin-left: 20px; box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);">
+                <div class="layui-card" style="height: 280px;">
+                    <div class="layui-card-header">
+                        今日数据
+                    </div>
+                    <div class="layui-card-body" style="display: flex;flex-direction: row;flex-wrap: wrap;margin-left: 10px;">
+                        <div class="data-item">
+                            <span class="data-item-title">采集新闻</span>
+                            <span class="data-item-num">0</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-item-title">采集视频</span>
+                            <span class="data-item-num">0</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-item-title">用户流量</span>
+                            <span class="data-item-num">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6" style="margin-top: 30px; width:100%;height: 280px; margin-left: 20px; box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);">
+                <div class="layui-card" style="height: 280px;">
+                    <div class="layui-card-header">
+                        数据概览
+                    </div>
+                    <div class="layui-card-body" style="display: flex;flex-direction: row;flex-wrap: wrap;margin-left: 10px;">
+                        <div class="data-item">
+                            <span class="data-item-title">新闻</span>
+                            <span class="data-item-num">0</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-item-title">视频</span>
+                            <span class="data-item-num">0</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-item-title">注册用户</span>
+                            <span class="data-item-num">0</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-item-title">用户流量</span>
+                            <span class="data-item-num">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md6" style="width: 97%;display: flex;flex-direction: column; margin-top: 30px;margin-left: 10px; box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);">
+        <div class="layui-card-header" style="height: 50px;display: flex;flex-direction: row;">
+            <div class="graph-title-item-selected" id="hot_news_title">
+                今日Top10新闻
+            </div>
+            <div class="graph-title-item" id="hot_search_title">
+                今日热搜
+            </div>
+        </div>
+        <div class="layui-card" id="hot_news_table" style="margin-left: 20px;margin-right: 20px;">
+            <table class="layui-hide" ></table>
+        </div>
+        <div class="layui-card" id="hot_search_table" style="margin-left: 20px;margin-right: 20px;display: none;">
+            <table class="layui-hide" ></table>
+        </div>
+    </div>
+    <div class="layui-col-md6" style="width: 97%;display: flex;flex-direction: column; margin-top: 30px;margin-left: 10px; box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);">
+        <div class="layui-card-header" style="height: 50px;display: flex;flex-direction: row;">
+            今日访问用户地理分析
+        </div>
+        <div class="layui-card" style="margin-left: 20px;margin-right: 20px;">
+            <div id="heatmap" style="width: 97%;height:800px;margin-left: 10px;margin-top: 10px;margin-bottom: 30px;"></div>
+        </div>
     </div>
 </body>
+<style type="text/css">
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 60px;
+}
+
+.data-item {
+    width: 163.16px;
+    height: 93px;
+    color: #999;
+    background-color: #f8f8f8;
+    border-radius: 1px;
+    display: flex;
+    margin-left: 10px;
+    margin-top: 10px;
+    flex-direction: column;
+}
+
+.data-item:hover {
+    background-color: #f2f2f2;
+}
+
+.data-item-title {
+    font-size: 12px;
+    margin-left: 15px;
+    line-height: 40px;
+}
+
+.data-item-num {
+    font-size: 30px;
+    color: #009688;
+    font-weight: 300;
+    font-style: normal;
+    margin-left: 15px;
+    line-height: 50px;
+}
+
+.graph-title-item {
+    margin-left: 20px;
+    text-align: center;
+    height: 100%;
+    cursor: pointer;
+}
+
+.graph-title-item-selected {
+    margin-left: 20px;
+    height: 100%;
+    cursor: pointer;
+    text-align: center;
+    border-bottom: 2px solid #5FB878;
+}
+</style>
+<script type="text/javascript">
+$('#hot_news_title').mouseover(function() {
+    $('#hot_news_title').addClass('graph-title-item-selected')
+    $('#hot_news_title').removeClass("graph-title-item");
+    $('#hot_search_title').addClass('graph-title-item');
+    $('#hot_search_title').removeClass('graph-title-item-selected');
+    $("#hot_search_table").next().hide();
+    $("#hot_news_table").next().show();
+});
+$('#hot_search_title').mouseover(function() {
+    $('#hot_search_title').addClass('graph-title-item-selected')
+    $('#hot_search_title').removeClass("graph-title-item");
+    $('#hot_news_title').addClass('graph-title-item');
+    $('#hot_news_title').removeClass('graph-title-item-selected');
+    $("#hot_search_table").next().show();
+    $("#hot_news_table").next().hide();
+});
+</script>
 
 </html>

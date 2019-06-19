@@ -9,15 +9,14 @@ layui.use(['layer', 'element'], function() {
                 btn: ['是', '否'], //可以无限个按钮
             }, function(index, layero) {
                 //按钮【按钮一】的回调
-                window.location.href = 'logout/'
+                window.location.href = '/web/logout/'
             });
         } else {
             var loading = layer.load(0, {
                 shade: false,
                 time: 1000
             });
-            var html='<iframe class="right" frameborder="no" border="0"  src="'+elem[0].dataset.page+'"></iframe>'
-            console.log(html)
+            var html='<iframe class="right" target="tab"  id="tabframe" frameborder="no" border="0"  src="'+elem[0].dataset.page+'"></iframe>'
             var id=new Date().getTime()
             element.tabAdd('tabList', {
                 title: elem.text(),

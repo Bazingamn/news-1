@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 import pymongo
+import smtplib
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -26,7 +27,7 @@ DB_CON = CLIENT['news']
 SECRET_KEY = 'i^(ur6dmfe2m!jfmmbi79um5p7=h$(#q9uq18_&+z31g3t+-05'
 USERNAME = 'admin'
 # SECURITY WARNING: don't run with debug turned on in production!
-PASSWD = 'c25c7c22b8ea2b19752085101017e332'
+PASSWD = '2f523ef3e16b587db76dfd31f95eb09e'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
@@ -53,7 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'admin_status.middleware.LoginMiddleware'
+    # 'admin_status.middleware.LoginMiddleware'
 ]
 
 ROOT_URLCONF = 'news.urls'
@@ -123,7 +124,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -134,5 +135,33 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/'),
 ]
 
-SESSION_COOKIE_AGE = 60 * 30
+SESSION_COOKIE_AGE = 60 * 15
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
+DETAULT_AVATAR = 'https://uuclock-1254170634.cos.ap-chengdu.myqcloud.com/JSG/user/logo/logo.png'
+LOCATION_API = 'http://ipquery.market.alicloudapi.com/query?ip='
+LOCATION_APPCODE = '7384a503b81d41a49d331cacec906337'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.mxhichina.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'ricky@herpstech.com'
+EMAIL_HOST_PASSWORD = 'hhy19980615,'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+MAIL_USE_SSL = True
+
+MAP_API = 'http://api.map.baidu.com/geocoder/v2/?output=json&ak=92N7LQj92kc06OBq2Pj0HBXxtY9bKKGe&callback=showLocation&address='
+
+'''
+function: 腾讯云对象存储模块
+parameters@secret_id: secret_id@secret_key: secret_key@region: 存储桶名称@token: token默认为空@scheme：请求方式
+date: 2018 / 09 / 06
+'''
+SECRETID = 'AKIDmOltnSABQVQ6Yx7ByXqulOmumOjpEqoX'  # secretId
+SECRETKEY = 'cz83j9MK3WieKjrjKfjZAWcU8XhbFcja'  # secretKey
+REGION = 'ap-chengdu'  # Region
+TOKEN = None  # Token，默认为空
+SCHEMA = 'https'  # 使用 http/https 协议

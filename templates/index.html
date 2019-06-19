@@ -46,16 +46,17 @@
                         shade: false,
                     });
                     $.ajax({
-                        url: 'login/',
+                        url: 'web/login/',
                         method: 'POST',
                         data: {
                             username: username,
                             password: password
                         },
                         success: function(res) {
+                            console.log(res)
                             layer.close(loading);
                             if (res.code == 0) {
-                                window.location.href = "/menu/"
+                                window.location.href = "/web/menu/"
                             } else {
                                 layer.msg(res.data, { time: 500 });
                             }
