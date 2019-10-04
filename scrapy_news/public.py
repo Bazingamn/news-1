@@ -15,7 +15,7 @@ USER_AGENT = UserAgent()
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
-client = pymongo.MongoClient("mongodb://120.77.144.237:27017")
+client = pymongo.MongoClient("mongodb://***:27017")
 db = client['news']
 
 
